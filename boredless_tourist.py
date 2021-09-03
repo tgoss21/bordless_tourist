@@ -33,12 +33,25 @@ def find_attractions(destination, interests):
                 attractions_with_interest.append(possible_attraction[0])
     return attractions_with_interest
             
-
+def get_attraction_for_traveler(traveler):
+    traveler_destination = traveler[1]
+    traveler_interests = traveler[2]
+    traveler_attractions = find_attractions(traveler_destination, traveler_interests)
+    string_attractions = ''
+    for att in traveler_attractions:
+        string_attractions += att + ', '
+    
+    interests_string = '''Hi {0}, we think you'll like these places around {1}: {2}'''.format(traveler[0], traveler_destination, string_attractions)
+    return interests_string
+    
+    
 #print(get_destination_index('Los Angeles, USA'))
 #test_destination_index = get_traveler_location(test_traveler)
 #print(test_destination_index)
 
 add_attraction('Los Angeles, USA', ['Venice Beach', ['beach']])
+add_attraction('Los Angeles, USA', ['Malibu Beach', ['beach']])
+add_attraction('Los Angeles, USA', ['Laguna Beach', ['beach']])
 add_attraction("Paris, France", ["the Louvre", ["art", "museum"]])
 add_attraction("Paris, France", ["Arc de Triomphe", ["historical site", "monument"]])
 add_attraction("Shanghai, China", ["Yu Garden", ["garden", "historcical site"]])
@@ -53,3 +66,8 @@ add_attraction("Cairo, Egypt", ["Egyptian Museum", ["museum"]])
 
 la_arts = find_attractions('Los Angeles, USA', ['art'])
 print(la_arts)
+
+traveler1 = ['Dereck Smill', 'Paris, France', ['monument']]
+traveler2 = ['Tracy Goss', 'Los Angeles, USA', ['beach']]
+print(get_attraction_for_traveler(traveler1))
+print(get_attraction_for_traveler(traveler2))
